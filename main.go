@@ -4,18 +4,60 @@ import (
 	"fmt"
 
 	linkedlist "github.com/i33ym/ds/linked-list"
+	"github.com/i33ym/ds/stack"
 )
 
 func main() {
-	items := linkedlist.NewLinkedList[string]()
+	linkedList := linkedlist.NewLinkedList[string]()
 
-	items.Prepend("Abraham")
-	items.Append("Moses")
-	items.Prepend("Noah")
-	items.Append("Jesus")
+	linkedList.Prepend("Abraham")
+	linkedList.Append("Moses")
+	linkedList.Prepend("Noah")
+	linkedList.Append("Jesus")
 
-	fmt.Println(items.Logs())
+	fmt.Println(linkedList.Logs())
+	linkedList.Display()
 	fmt.Println()
 
-	items.Display()
+	stack := stack.NewStack[int]()
+
+	stack.Push(14)
+	stack.Push(23)
+	stack.Push(40)
+
+	fmt.Println(stack.Logs())
+	stack.Display()
+
+	fmt.Println()
+
+	number, ok := stack.Pop()
+	if !ok {
+		panic("something terrible happaned (1)")
+	}
+
+	fmt.Println("The first to be popped:", number)
+
+	number, ok = stack.Pop()
+	if !ok {
+		panic("something terrible happened (2)")
+	}
+
+	fmt.Println("The second to be popped:", number)
+
+	number, ok = stack.Pop()
+	if !ok {
+		panic("something terrible happened (3)")
+	}
+
+	fmt.Println("The third to be popped:", number)
+
+	_, ok = stack.Pop()
+	if ok {
+		panic("something that should not happen happened")
+	}
+
+	fmt.Println()
+
+	fmt.Println(stack.Logs())
+	stack.Display()
 }
